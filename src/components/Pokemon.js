@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class Pokemon extends React.Component {
   constructor(props) {
     super(props)
@@ -8,17 +9,24 @@ class Pokemon extends React.Component {
       pokemon: []
     }
   }
-  componentDidMount() {
-    fetch('https://pokeapi.co/api/v2/pokemon/')
+  getData = async () => {
+    fetch('https://pokeapi.co/api/v2/pokemon/?limit=811')
       .then((response) => {
         return response.json();
       })
       .then((pokemon) => {
-        // console.log(pokemon);
         this.setState({
           pokemon: [...this.state.pokemon, ...pokemon.results]
-        });
-    });
+        })
+      });
+  }
+  componentDidMount() {
+    this.getData()
+      .then((pokemon) => {
+        for (let i = 0; i < this.state.pokemon.length; i++) {
+          console.log(i);
+        }
+      })
   }
   handleKeyChange = (e) => {
     console.log(e.target.value);
@@ -31,11 +39,11 @@ class Pokemon extends React.Component {
       })
       .then((pokemon) => {
         console.log(pokemon);
-        if(pokemon) {
-          this.setState({
-            pokemon: [...this.state.pokemon, ...pokemon.results]
-          });
-        }
+        // if(pokemon) {
+        //   this.setState({
+        //     pokemon: [...this.state.pokemon, ...pokemon.results]
+        //   });
+        // }
         
     });
   }
@@ -56,7 +64,6 @@ class Pokemon extends React.Component {
   render () {
     console.log(this.state.pokemon);
     return (<div>
-      Pokemon pic goes here
       <input type="text" onChange={this.handleKeyChange} />
       {this.state.pokemon.map((pokemon, i)=>{
         return <li onClick={() => (this.handleClick(pokemon.url, i))}>{pokemon.name}
