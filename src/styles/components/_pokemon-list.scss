@@ -1,0 +1,16 @@
+.pokemon-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 50%;
+  height: 90%;
+  margin: 10px;
+}
+
+.pokemon-cell {
+  list-style: none;
+  padding: 3px 0 3px 0;
+  width: 50%;
+}
+

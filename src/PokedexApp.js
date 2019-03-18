@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import Pokemon from './components/Pokemon';
+import PokemonList from './components/PokemonList';
+import './styles/styles.scss';
 
 class PokedexApp extends Component {
   render() {
     return (
       <div>
         Pokedex App
-        <Pokemon />
+        <PokemonList />
       </div>
     );
   }
