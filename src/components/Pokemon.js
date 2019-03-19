@@ -72,7 +72,9 @@ class Pokemon extends React.Component {
   render () {
     // console.log(this.state.pokemon);
     return (<div>
-      <input type="text" onChange={this.handleKeyChange} />
+      <div className="search-container">
+        <input className="search-bar" type="text" onChange={this.handleKeyChange} />
+      </div>
       <div className="pokedex-container">
         <div className="pokemon-list">
           {this.state.pokemon.map((pokemon, i)=>{
@@ -82,7 +84,7 @@ class Pokemon extends React.Component {
               onClick={() => (this.handleClick(i))}
               >
                 <img src={pokemon.sprites.front_default} alt={pokemon.name}/>
-                {pokemon.name}
+                <p>{pokemon.name}</p>
             </li>
           })}    
         </div>

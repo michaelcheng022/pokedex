@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+$press-start-2p: 'Press Start 2P', cursive; 
+
 .pokemon-display {
   display: block;
   justify-content: center;
-  margin: 10px;
+  
   overflow: hidden;
   width: 50%;
 }
@@ -13,4 +16,9 @@
 .image-cell img { 
   height: 200px;
   width: 200px;
+}
+
+.details-container {
+  font-family: $press-start-2p !important;
+
 }

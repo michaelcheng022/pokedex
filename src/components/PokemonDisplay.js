@@ -5,7 +5,7 @@ const PokemonDisplay = (props) => (
     <div className="image-cell">
       <img src={props.pokemon.sprites.front_default} alt={props.pokemon.name}/>
     </div>
-    <div>
+    <div className="details-container">
       <h1>{props.pokemon.name}</h1>
       <p>Height: {props.pokemon.height}</p>
       <p>Weight: {props.pokemon.weight}</p>
