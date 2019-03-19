@@ -6,7 +6,7 @@ class PokedexApp extends Component {
   render() {
     return (
       <div>
-        Pokedex App
+        <h1>Pokedex App</h1>
         <PokemonList />
       </div>
     );

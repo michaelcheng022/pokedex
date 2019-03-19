@@ -1,0 +1,16 @@
+.pokemon-display {
+  display: block;
+  justify-content: center;
+  margin: 10px;
+  overflow: hidden;
+  width: 50%;
+}
+
+.image-cell {
+  background-color: gray;
+}
+
+.image-cell img { 
+  height: 200px;
+  width: 200px;
+}

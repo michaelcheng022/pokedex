@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PokemonDisplay from './PokemonDisplay'
 
 class Pokemon extends React.Component {
   constructor(props) {
@@ -7,7 +7,8 @@ class Pokemon extends React.Component {
 
     this.state = {
       pokemon: [],
-      nextUrl: null
+      nextUrl: null,
+      currPokemon: 0
     }
   }
   getData = (url) => {
@@ -20,20 +21,20 @@ class Pokemon extends React.Component {
           //pokemon: [...this.state.pokemon, ...pokemon.results],
           nextUrl: pokemon.next
         });
-        console.log(pokemon.results);
-        for( let i = 0; i < pokemon.results.length; i++ ) {
+        console.log(pokemon.results.length);
+        for(let i = 0; i < pokemon.results.length; i++ ) {
+          console.log(pokemon.results[i].url);
           fetch(pokemon.results[i].url)
             .then((response) => {
               return response.json();
             })
             .then((pokemonWithData) => {
+              console.log(pokemonWithData);
               this.setState({
                 pokemon: [...this.state.pokemon, {...pokemonWithData}],
               });
             })
         }
-        console.log(this.state.pokemon)
-        console.log(this.state.nextUrl);
       });
   }
   componentDidMount() {
@@ -41,59 +42,59 @@ class Pokemon extends React.Component {
   }
   handleKeyChange = (e) => {
     console.log(e.target.value);
-    // fetch(`https://pokeapi.co/api/v2/pokemon/${e.target.value}`)
-    //   .then((response) => {
-    //     console.log(response);
-    //     if (response.ok) {
-    //       return response.json()
-    //     } 
-    //   })
-    //   .then((pokemon) => {
-    //     console.log(pokemon);
-    //     // if(pokemon) {
-    //     //   this.setState({
-    //     //     pokemon: [...this.state.pokemon, ...pokemon.results]
-    //     //   });
-    //     // }
+    fetch(`https://pokeapi.co/api/v2/pokemon/${e.target.value}`)
+      .then((response) => {
+        console.log(response);
+        if (response.ok) {
+          return response.json()
+        } 
+      })
+      .then((pokemon) => {
+        console.log(pokemon);
+        if (pokemon) {
+          this.setState({
+            pokemon: [...this.state.pokemon, {...pokemon}],
+          });
+        }
         
-    // });
+        
+    });
   }
-  handleClick = (url, index) => {
-    console.log(url);
-    // fetch(url)
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((pokemon) => {
-    //     let updatedPokemon = {...pokemon, ...this.state.pokemon[index]};
-    //     console.log(updatedPokemon);
-    //     this.setState({
-    //       pokemon: [...this.state.pokemon.slice(0, index), updatedPokemon, ...this.state.pokemon.slice(index+1)]
-    //     })
-    //   })
+  handleClick = (index) => {
+    console.log(index);
+    this.setState({
+      currPokemon: index
+    })
   }
   handleNext = (url) => {
     this.getData(url);
   }
   render () {
-    console.log(this.state.pokemon);
+    // console.log(this.state.pokemon);
     return (<div>
       <input type="text" onChange={this.handleKeyChange} />
-      <div className="pokemon-list">
-        {this.state.pokemon.map((pokemon, i)=>{
-          return <li 
-            key={i} 
-            className="pokemon-cell"
-            onClick={() => (this.handleClick(pokemon.url, i))}>{pokemon.name}
-              
-                <img src={pokemon.sprites.front_default} alt={pokemon.name}/> 
-              
-          </li>
-        })}    
+      <div className="pokedex-container">
+        <div className="pokemon-list">
+          {this.state.pokemon.map((pokemon, i)=>{
+            return <li 
+              key={i} 
+              className="pokemon-cell"
+              onClick={() => (this.handleClick(i))}
+              >
+                <img src={pokemon.sprites.front_default} alt={pokemon.name}/>
+                {pokemon.name}
+            </li>
+          })}    
+        </div>
+        <div className="pokemon-display">
+          {this.state.pokemon.length > 0 ? 
+            <PokemonDisplay 
+              pokemon={this.state.pokemon[this.state.currPokemon]}
+            /> : <p>DISPLAY GOES HERE</p>}
+        </div>
       </div>
-      <button onClick={()=>this.handleNext(this.state.nextUrl)}>Next</button>
-      
-      </div>);
+      <button onClick={()=> (this.state.nextUrl ? this.handleNext(this.state.nextUrl) : null)}>Next</button>
+    </div>);
   }
   
 }

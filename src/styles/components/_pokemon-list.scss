@@ -1,16 +1,25 @@
+.pokedex-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .pokemon-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 50%;
-  height: 90%;
+  height: 70vh;
   margin: 10px;
+  overflow-y: scroll
 }
 
 .pokemon-cell {
+  display: block;
+  justify-content: center;
   list-style: none;
   padding: 3px 0 3px 0;
+  text-align: center;
   width: 50%;
 }
 
