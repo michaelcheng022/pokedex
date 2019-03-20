@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
+import SearchBar from './SearchBar'
+import PokemonList from './PokemonList';
 import PokemonDisplay from './PokemonDisplay'
 
-class Pokemon extends React.Component {
+class Pokemon extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       pokemon: [],
       nextUrl: null,
-      currPokemon: 0
+      currPokemon: 0,
+      searchActive: false
     }
+  }
+  reset = () => {
+    window.location.reload();
   }
   getData = (url) => {
     fetch(url)
@@ -21,15 +27,15 @@ class Pokemon extends React.Component {
           //pokemon: [...this.state.pokemon, ...pokemon.results],
           nextUrl: pokemon.next
         });
-        console.log(pokemon.results.length);
+        //console.log(pokemon.results.length);
         for(let i = 0; i < pokemon.results.length; i++ ) {
-          console.log(pokemon.results[i].url);
+          //console.log(pokemon.results[i].url);
           fetch(pokemon.results[i].url)
             .then((response) => {
               return response.json();
             })
             .then((pokemonWithData) => {
-              console.log(pokemonWithData);
+              //console.log(pokemonWithData);
               this.setState({
                 pokemon: [...this.state.pokemon, {...pokemonWithData}],
               });
@@ -40,28 +46,28 @@ class Pokemon extends React.Component {
   componentDidMount() {
     this.getData('https://pokeapi.co/api/v2/pokemon/?limit=10');
   }
-  handleKeyChange = (e) => {
-    console.log(e.target.value);
-    fetch(`https://pokeapi.co/api/v2/pokemon/${e.target.value}`)
-      .then((response) => {
-        console.log(response);
-        if (response.ok) {
-          return response.json()
-        } 
-      })
-      .then((pokemon) => {
-        console.log(pokemon);
-        if (pokemon) {
+  handleSearchSubmit = (searchResults) => {
+    this.setState({
+      searchActive: true,
+      nextUrl: null,
+      pokemon: []
+    })
+    console.log(searchResults);
+    for(let i = 0; i < searchResults.length; i++ ) {
+      console.log(searchResults[0].url);
+      fetch(searchResults[i].url)
+        .then((response) => {
+          return response.json();
+        })
+        .then((pokemonWithData) => {
+          console.log(pokemonWithData);
           this.setState({
-            pokemon: [...this.state.pokemon, {...pokemon}],
+            pokemon: [...this.state.pokemon, {...pokemonWithData}],
           });
-        }
-        
-        
-    });
+        })
+    }
   }
   handleClick = (index) => {
-    console.log(index);
     this.setState({
       currPokemon: index
     })
@@ -72,30 +78,18 @@ class Pokemon extends React.Component {
   render () {
     // console.log(this.state.pokemon);
     return (<div>
-      <div className="search-container">
-        <input className="search-bar" type="text" onChange={this.handleKeyChange} />
-      </div>
+      <SearchBar handleSearchSubmit={this.handleSearchSubmit} />
       <div className="pokedex-container">
-        <div className="pokemon-list">
-          {this.state.pokemon.map((pokemon, i)=>{
-            return <li 
-              key={i} 
-              className="pokemon-cell"
-              onClick={() => (this.handleClick(i))}
-              >
-                <img src={pokemon.sprites.front_default} alt={pokemon.name}/>
-                <p>{pokemon.name}</p>
-            </li>
-          })}    
-        </div>
+        <PokemonList handleClick={this.handleClick} pokemon={this.state.pokemon} />    
         <div className="pokemon-display">
           {this.state.pokemon.length > 0 ? 
             <PokemonDisplay 
               pokemon={this.state.pokemon[this.state.currPokemon]}
-            /> : <p>DISPLAY GOES HERE</p>}
+            /> : null}
         </div>
       </div>
       <button onClick={()=> (this.state.nextUrl ? this.handleNext(this.state.nextUrl) : null)}>Next</button>
+      <button onClick={this.reset}>Reset</button>        
     </div>);
   }
   
