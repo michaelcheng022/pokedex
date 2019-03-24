@@ -89,7 +89,7 @@ class Pokemon extends Component {
         </div>
       </div>
       <button onClick={()=> (this.state.nextUrl ? this.handleNext(this.state.nextUrl) : null)}>Next</button>
-      <button onClick={this.reset}>Reset</button>        
+      <button onClick={this.reset}>Reset Pokemon</button>        
     </div>);
   }
   
