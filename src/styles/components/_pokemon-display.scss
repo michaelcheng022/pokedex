@@ -1,24 +1,44 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 $press-start-2p: 'Press Start 2P', cursive; 
 
+.btn-container {
+  margin-left: 10%;
+}
+
+.btn-container button {
+  background-color: rgb(75, 75, 75);
+  border: 0;
+  border-radius: 3px;
+  font-family: $press-start-2p;
+  padding: 5px;
+  margin: 0 5px 0 5px;
+}
+
 .pokemon-display {
+  background: #ef5350;
   display: block;
   justify-content: center;
-  
   overflow: hidden;
   width: 50%;
 }
 
 .image-cell {
-  background-color: gray;
+  background-color: rgb(5, 5, 5);
+  border-radius: 5px;
+  margin: 10%;
 }
 
 .image-cell img { 
+  display: block;
   height: 200px;
   width: 200px;
+  margin: 0 auto;
 }
 
 .details-container {
+  background-color: gray;
+  border-radius: 5px;
   font-family: $press-start-2p !important;
-
+  padding: 20px;
+  margin: 10% 10% 5% 10%;
 }

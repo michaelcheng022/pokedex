@@ -1,31 +1,52 @@
+.btn-container {
+}
+
+.btn-container button {
+  padding: 5px;
+  margin: 0 5px 0 5px;
+}
+
 .pokedex-container {
+  background-color: rgb(119, 117, 117);
   display: flex;
   flex-direction: row;
-  margin: 0 10vw 0 10vw;
+  padding: 0 10vw 0 10vw;
 }
 
 .pokemon-list {
+  background-color: #ef5350;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 50%;
   height: 70vh;
-  
   overflow-y: scroll
 }
 
-.pokemon-cell {
-  display: block;
+.pokemon-container {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
+  margin: 10px 0 10px 0;
+  width: 50%;
+}
+.pokemon-cell {
+  background-color: rgba(161, 161, 161, 0.822);
+  border-radius: 5px;
+  display: block;
   list-style: none;
   padding: 3px 0 3px 0;
   text-align: center;
   width: 50%;
 }
 
+.pokemon-cell:hover {
+  background-color: white;
+}
+
 .pokemon-cell p {
-  margin: 0;
+  margin: 0 0 2px 0;
 }
 
 

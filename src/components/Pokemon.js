@@ -86,10 +86,14 @@ class Pokemon extends Component {
             <PokemonDisplay 
               pokemon={this.state.pokemon[this.state.currPokemon]}
             /> : null}
+            <div className="btn-container">
+              <button onClick={()=> (this.state.nextUrl ? this.handleNext(this.state.nextUrl) : null)}>Load More</button>
+              <button onClick={this.reset}>Reset Pokemon</button>  
+            </div>
         </div>
       </div>
-      <button onClick={()=> (this.state.nextUrl ? this.handleNext(this.state.nextUrl) : null)}>Next</button>
-      <button onClick={this.reset}>Reset Pokemon</button>        
+      
+            
     </div>);
   }
   
