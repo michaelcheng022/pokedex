@@ -59,7 +59,9 @@ export class SearchBar extends Component {
   render() {
     return (
       <div className="search-container">
-        <form onSubmit={(e) => {
+        <form
+          className="search-bar-box" 
+          onSubmit={(e) => {
             e.preventDefault();
             this.setState({
               showSuggestions: false,
@@ -74,16 +76,23 @@ export class SearchBar extends Component {
             value={this.state.userInput}
           />
           <button 
+            className="search-button"
             type="submit"
           >
             Search
           </button>
+            {this.state.showSuggestions && this.state.userInput ? <ul className="suggestions">
+              {this.state.filteredSuggestions.slice(0, 5).map((suggestion, i) => {
+                return <li 
+                  key={i} 
+                  onClick={this.onClick}
+                >
+                    {suggestion.name}
+                  </li>
+              })}
+            </ul> : null}
         </form>
-        {this.state.showSuggestions && this.state.userInput ? <ul>
-          {this.state.filteredSuggestions.slice(0, 5).map((suggestion, i) => {
-            return <li key={i} onClick={this.onClick}>{suggestion.name}</li>
-          })}
-        </ul> : null}
+        
       </div>
     )
   }

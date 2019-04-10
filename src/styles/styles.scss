@@ -16,4 +16,14 @@
 @import './components/header';
 @import './components/search-bar';
 
+body {
+  background: rgb(59,76,202);
+  background: linear-gradient(150deg, rgba(59,76,202,1) 0%, rgba(0,39,121,1) 43%, rgba(255,0,0,1) 100%);
+  background-size: auto;
+  background-repeat: no-repeat;
+  height: 100%;
+}
 
+html {
+  height: 100%;
+}

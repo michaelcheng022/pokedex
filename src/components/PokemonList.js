@@ -14,6 +14,7 @@ const PokemonList = (props) => (
         </li>
       </div>
     })}
+    {props.pokemon.length % 2 === 0 ? null : <div className="pokemon-container"></div>}
     </div>
   );
 
