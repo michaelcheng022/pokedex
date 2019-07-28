@@ -4,7 +4,7 @@ A react powered application that fetches from [PokeAPI](https://pokeapi.co/) to 
 
 inspired by: https://www.pokemon.com/us/pokedex/
 
-![Screenshot]
+![Screenshot](./public/pokedex-app.png)
 
 ## Features
 * Live search that implements autocompletion and suggestions
