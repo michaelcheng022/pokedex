@@ -7,6 +7,7 @@ inspired by: https://www.pokemon.com/us/pokedex/
 ![Screenshot](./public/pokedex-app.png)
 
 ## Features
+* Searchbar that queries PokeAPI for matched pokemon
 * Live search that implements autocompletion and suggestions
 * Fetches Pokemon realtime from [PokeAPI](https://pokeapi.co/)
 * Optimized for load performance by limiting API requests and caching data
