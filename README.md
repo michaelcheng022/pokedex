@@ -1,4 +1,4 @@
-## [Pokedex App](https://hn-algolia-clone.herokuapp.com/)
+## Pokedex App
 
 A react powered application that fetches from [PokeAPI](https://pokeapi.co/) to generate list of pokemon and view their attributes. Building this application taught me how to implement search suggestions and autocomplete.
 
