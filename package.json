@@ -7,7 +7,7 @@
     "node-sass": "^4.11.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,6 +25,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "react-dev-utils": "^8.0.0"
+    "react-dev-utils": "^12.0.1"
   }
 }
